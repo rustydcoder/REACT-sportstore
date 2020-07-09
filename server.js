@@ -14,13 +14,14 @@ const createServer = () => {
    delete require.cache[require.resolve(fileName)];
 
    setTimeout(() => {
-      router = jsonServer.router(fileName.endsWith('.js') ? require(fileName) : fileName)
+      router = jsonServer.router(fileName.endsWith('.js')
+         ? require(fileName)() : fileName)
    }, 100);
 }
 
 createServer()
 
-app.use(cors)
+app.use(cors())
 app.use(jsonServer.bodyParser)
 app.use('/api', (req, res, next) => router(req, res, next))
 
