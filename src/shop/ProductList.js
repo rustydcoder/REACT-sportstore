@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class ProductList extends Component {
 
    render() {
-      const { products } = this.props;
+      const { products, addToCart } = this.props;
 
       if (!products || products.length === 0) {
          return <h5 className='p-2'>No Products</h5>
@@ -23,6 +23,10 @@ export class ProductList extends Component {
 
             <div className='card-text bg-white p-1'>
                {p.description}
+               <button className='btn btn-success btn-sm float-right'
+                  onClick={() => addToCart(p)} >
+                  Add To Cart
+               </button>
             </div>
 
          </div>
