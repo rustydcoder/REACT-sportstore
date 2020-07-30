@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { ToggleLink } from "../ToggleLink";
 
 export class CategoryNavigation extends Component {
 
@@ -9,21 +9,20 @@ export class CategoryNavigation extends Component {
       return (
          <React.Fragment>
 
-            <Link
-               className='btn btn-secondary btn-block'
-               to={baseUrl}>
+            <ToggleLink
+               to={baseUrl}
+               exact={true}>
                All
-            </Link>
+            </ToggleLink>
 
             {
                categories && categories.map(cat =>
-                  <Link
-                     className='btn btn-secondary btn-block'
+                  <ToggleLink
                      key={cat}
                      to={`${baseUrl}/${cat.toLowerCase()}`}
                   >
                      {cat}
-                  </Link>
+                  </ToggleLink>
                )
             }
 
