@@ -16,7 +16,7 @@ export class ProductList extends Component {
                {p.name}
 
                <span className='badge badge-pill badge-primary float-right'>
-                  ${p.prices.toFixed(2)}
+                  ${p.price.toFixed(2)}
                </span>
 
             </h4>

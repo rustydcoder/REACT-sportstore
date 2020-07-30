@@ -29,7 +29,7 @@ export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
 
          return <Switch>
             <Route
-               path="/shop/products/:category"
+               path="/shop/products/:category?"
                render={(routeProps) =>
                   <Shop
                      {...this.props}
