@@ -1,14 +1,14 @@
 const DataTypes = {
-   PRODUCTS: 'products',
-   CATEGORIES: 'categories'
-}
+  PRODUCTS: "products",
+  CATEGORIES: "categories",
+};
 
 const ActionTypes = {
-   DATA_LOAD: 'data_load',
-   CART_ADD: 'cart_add',
-   CART_UPDATE: 'cart_update',
-   CART_REMOVE: 'cart_delete',
-   CART_CLEAR: 'cart_clear'
-}
+  DATA_LOAD: "data_load",
+  CART_ADD: "cart_add",
+  CART_UPDATE: "cart_update",
+  CART_REMOVE: "cart_delete",
+  CART_CLEAR: "cart_clear",
+};
 
-export { DataTypes, ActionTypes }
+export { DataTypes, ActionTypes };
