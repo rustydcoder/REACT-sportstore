@@ -1,33 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getLinkClasses } from "../helperFunc";
 
-export default class CartSummary extends Component {
-  getSummary = () => {
-    const { cartItems, cartPrice } = this.props;
+const CartSummary = (props) => {
+  const cart = useSelector((state) => state.cartReducer);
+  const { cartItems, cartPrice } = cart;
 
-    if (cartItems > 0) {
-      return (
-        <span>
-          {cartItems} item(s), ${cartPrice.toFixed(2)}
-        </span>
-      );
-    } else {
-      return <span>Your cart : (empty) </span>;
-    }
-  };
+  const getSummary = () =>
+    !cartItems || cartItems === 0 ? (
+      <span>Your cart : (empty) </span>
+    ) : (
+      <span>
+        {cartItems} item(s), ${cartPrice.toFixed(2)}
+      </span>
+    );
 
-  getLinkClasses = () => `btn btn-sm bg-dark text-white
-       ${this.props.cartItems === 0 ? "disabled" : ""}`;
-
-  render = () => (
+  return (
     <div className="float-right">
       <small>
-        {console.log(this.props)}
-        {this.getSummary()}
-        <Link className={this.getLinkClasses()} to="/shop/cart">
+        {getSummary()}
+        <Link className={getLinkClasses(cartItems)} to="/shop/cart">
           <i className="fa fa-shopping-cart"></i>
         </Link>
       </small>
     </div>
   );
-}
+};
+export default CartSummary;

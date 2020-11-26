@@ -4,6 +4,8 @@ import Shop from "./shop";
 import { useDispatch, useSelector } from "react-redux";
 import { loadData } from "../data/actions/loadCreator";
 import { DataTypes } from "../data/Types";
+import Checkout from "./checkout";
+import { filterProducts } from "./helperFunc";
 
 const ShopConnector = (props) => {
   const dispatch = useDispatch();
@@ -14,13 +16,6 @@ const ShopConnector = (props) => {
   }, [dispatch]);
 
   const shopReducer = useSelector((state) => state.shopReducer);
-
-  const filterProducts = (products = [], category) =>
-    !category || category === "All"
-      ? products
-      : products.filter(
-          (p) => p.category.toLowerCase() === category.toLowerCase()
-        );
 
   return (
     <Switch>
@@ -37,14 +32,13 @@ const ShopConnector = (props) => {
           />
         )}
       />
+      <Route
+        path="/shop/cart"
+        render={(routeProps) => <Checkout {...routeProps} />}
+      />
       <Redirect to="/shop/products" />
     </Switch>
   );
 };
-
-{
-  /* <Route path='/shop/cart' render={routeProps =>
-<CartDetails {...routeProps} />} /> */
-}
 
 export default ShopConnector;

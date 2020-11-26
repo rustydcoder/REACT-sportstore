@@ -11,7 +11,7 @@ const Shop = (props) => {
       <div className="row">
         <div className="col bg-dark text-white">
           <div className="navbar-brand">SPORTS STORE</div>
-          <CartSummary {...props} />
+          <CartSummary />
         </div>
       </div>
 
