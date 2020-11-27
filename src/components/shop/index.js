@@ -4,7 +4,7 @@ import ProductList from "./ProductList";
 import CartSummary from "./CartSummary";
 
 const Shop = (props) => {
-  const { categories, products } = props;
+  const { categories, products, history } = props;
 
   return (
     <div className="container-fluid">
@@ -24,7 +24,7 @@ const Shop = (props) => {
         </div>
 
         <div className="col-9 p-2">
-          <ProductList products={products} />
+          <ProductList products={products} history={history} />
         </div>
       </div>
     </div>

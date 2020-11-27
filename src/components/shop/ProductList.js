@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../data/actions/cartCreator";
 
 const ProductList = (props) => {
-  const { products } = props;
+  const { products, history } = props;
   const dispatch = useDispatch();
 
   const addedToCart = (p) => {
     dispatch(addToCart(p));
+    // history.push("/shop/cart");
   };
 
   if (!products || products.length === 0) {
