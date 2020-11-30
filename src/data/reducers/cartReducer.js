@@ -1,4 +1,4 @@
-import { ActionTypes } from "../Types";
+import { ActionTypes } from "../constant/Types";
 
 // possible bug
 // mutating newState data

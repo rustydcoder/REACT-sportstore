@@ -1,4 +1,4 @@
-import { ActionTypes } from "../Types";
+import { ActionTypes } from "../constant/Types";
 
 const loadReducer = (state = {}, action) => {
   switch (action.type) {

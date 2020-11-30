@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Shop from "./shop";
 import { useDispatch, useSelector } from "react-redux";
 import { loadData } from "../data/actions/loadCreator";
-import { DataTypes } from "../data/Types";
+import { DataTypes } from "../data/constant/Types";
 import Checkout from "./checkout";
 import { filterProducts } from "./helperFunc";
 
