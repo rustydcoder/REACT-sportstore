@@ -1,18 +1,33 @@
 import { ActionTypes } from "../constant/Types";
-// import { data as placeHolderData } from "../placeholder";
 import * as api from "../constant/api";
 
-export const loadData = (dataType) => async (dispatch) => {
+export const loadData = (dataType, params = {}) => async (dispatch) => {
   const action = {
     type: ActionTypes.DATA_LOAD,
-    payload: { dataType, data: [] },
+    payload: { dataType, total: 0, params, data: [] },
   };
 
   try {
-    const { data } = await api.GetData(dataType);
-
-    dispatch({ ...action, payload: { ...action.payload, data } });
+    const { data, headers } = await api.GetData(dataType, params);
+    dispatch({
+      ...action,
+      payload: {
+        ...action.payload,
+        data,
+        total: Number(headers["x-total-count"]),
+      },
+    });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
+
+export const setPageSize = (newSize) => ({
+  type: ActionTypes.DATA_SET_PAGESIZE,
+  payload: newSize,
+});
+
+export const setSortProperty = (newProp) => ({
+  type: ActionTypes.DATA_SET_SORT_PROPERTY,
+  payload: newProp,
+});

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ToggleLink } from "../../ToggleLink";
+import { ToggleLink } from "../ToggleLink";
 
 export default class CategoryNavigation extends Component {
   render() {
@@ -7,7 +7,7 @@ export default class CategoryNavigation extends Component {
 
     return (
       <React.Fragment>
-        <ToggleLink to={baseUrl} exact={true}>
+        <ToggleLink to={`${baseUrl}/all`} exact={false}>
           All
         </ToggleLink>
 

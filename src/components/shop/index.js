@@ -2,6 +2,10 @@ import React from "react";
 import CategoryNavigation from "./CategoryNavigation";
 import ProductList from "./ProductList";
 import CartSummary from "./CartSummary";
+import { ProductPageConnector } from "../ProductPageConnector";
+import PaginationControls from "../pagination/PaginationControls";
+
+// const ProductPages = ProductPageConnector(PaginationControls);
 
 const Shop = (props) => {
   const { categories, products, history } = props;
@@ -24,6 +28,7 @@ const Shop = (props) => {
         </div>
 
         <div className="col-9 p-2">
+          <PaginationControls history={history} />
           <ProductList products={products} history={history} />
         </div>
       </div>

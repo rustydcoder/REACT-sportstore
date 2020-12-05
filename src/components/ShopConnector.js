@@ -5,38 +5,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadData } from "../data/actions/loadCreator";
 import { DataTypes } from "../data/constant/Types";
 import Checkout from "./checkout";
-import { filterProducts } from "./helperFunc";
+import DataGetter from "./DataGetter";
 
 const ShopConnector = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadData(DataTypes.CATEGORIES));
-    dispatch(loadData(DataTypes.PRODUCTS));
   }, [dispatch]);
 
   const shopReducer = useSelector((state) => state.shopReducer);
 
   return (
     <Switch>
+      <Redirect
+        from="/shop/products/:category"
+        to="/shop/products/:category/1"
+        exact={true}
+      />
       <Route
-        path="/shop/products/:category?"
+        path="/shop/products/:category/:page"
         render={(routeProps) => (
-          <Shop
-            {...shopReducer}
-            {...routeProps}
-            products={filterProducts(
-              shopReducer.products,
-              routeProps.match.params.category
-            )}
-          />
+          <DataGetter loadData={loadData} {...routeProps} {...shopReducer}>
+            <Shop {...shopReducer} {...routeProps} />
+          </DataGetter>
         )}
       />
       <Route
         path="/shop/cart"
         render={(routeProps) => <Checkout {...routeProps} />}
       />
-      <Redirect to="/shop/products" />
+      <Redirect to="/shop/products/all/1" />
     </Switch>
   );
 };

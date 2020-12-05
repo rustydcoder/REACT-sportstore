@@ -6,7 +6,15 @@ const loadReducer = (state = {}, action) => {
       return {
         ...state,
         [action.payload.dataType]: action.payload.data,
+        [`${action.payload.dataType}_total`]: action.payload.total,
+        [`${action.payload.dataType}_params`]: action.payload.params,
       };
+
+    case ActionTypes.DATA_SET_PAGESIZE:
+      return { ...state, pageSize: action.payload };
+
+    case ActionTypes.DATA_SET_SORT_PROPERTY:
+      return { ...state, sortKey: action.payload };
 
     default:
       return state;
