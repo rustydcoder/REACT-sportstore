@@ -2,10 +2,7 @@ import React from "react";
 import CategoryNavigation from "./CategoryNavigation";
 import ProductList from "./ProductList";
 import CartSummary from "./CartSummary";
-import { ProductPageConnector } from "../ProductPageConnector";
 import PaginationControls from "../pagination/PaginationControls";
-
-// const ProductPages = ProductPageConnector(PaginationControls);
 
 const Shop = (props) => {
   const { categories, products, history } = props;

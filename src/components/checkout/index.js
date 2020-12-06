@@ -1,40 +1,60 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getLinkClasses } from "../helperFunc";
-import CartDetailsRows from "./CartDetailsRows";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../../data/actions/cartCreator";
+import { placeOrder } from "../../data/actions/ordersCreator";
+import ValidatedForm from "./Form/ValidatedForm";
 
 const Checkout = (props) => {
-  const cart = useSelector((state) => state.cartReducer);
-  const { cartItems } = cart;
+  const defaultAttrs = { type: "text", required: true };
+  const formModel = [
+    { label: "Name" },
+    { label: "Email", attrs: { type: "email" } },
+    { label: "Address" },
+    { label: "City" },
+    { label: "Zip/Postal Code", name: "zip" },
+    { label: "Country" },
+  ];
+
+  const dispatch = useDispatch();
+  const cartReducer = useSelector((state) => state.cartReducer);
+
+  const handleSubmit = (formData) => {
+    const order = {
+      ...formData,
+      products: cartReducer.cart.map((item) => ({
+        quantity: item.quantity,
+        product_id: item.product.id,
+      })),
+    };
+
+    dispatch(clearCart());
+    dispatch(placeOrder(order));
+    props.history.push("/shop/thanks");
+  };
+
+  const handleCancel = () => {
+    props.history.push("/shop/cart");
+  };
 
   return (
-    <div className="m-3">
-      <h2 className="text-center">Your Cart</h2>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col bg-dark text-white">
+          <div className="navbar-brand">SPORTS STORE</div>
+        </div>
+      </div>
 
-      <table className="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Quantity</th>
-            <th>Product</th>
-            <th className="text-right">Price</th>
-            <th className="text-right">Subtotal</th>
-            <th />
-          </tr>
-        </thead>
-
-        <tbody>
-          <CartDetailsRows />
-        </tbody>
-      </table>
-
-      <div className="text-center">
-        <Link className="btn btn-primary m-1" to="/shop">
-          Continue Shopping
-        </Link>
-        <Link className={getLinkClasses(cartItems, true)} to="/shop/checkout">
-          Checkout
-        </Link>
+      <div className="row">
+        <div className="col m-2">
+          <ValidatedForm
+            formModel={formModel}
+            defaultAttrs={defaultAttrs}
+            submitCallback={handleSubmit}
+            cancelCallback={handleCancel}
+            submitText="Place Order"
+            cancelText="Return to Cart"
+          />
+        </div>
       </div>
     </div>
   );

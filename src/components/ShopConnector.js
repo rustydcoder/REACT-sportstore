@@ -4,8 +4,10 @@ import Shop from "./shop";
 import { useDispatch, useSelector } from "react-redux";
 import { loadData } from "../data/actions/loadCreator";
 import { DataTypes } from "../data/constant/Types";
-import Checkout from "./checkout";
+import CartDetails from "./shop/CartDetails";
 import DataGetter from "./DataGetter";
+import Checkout from "./checkout";
+import Thanks from "./checkout/Thanks";
 
 const ShopConnector = (props) => {
   const dispatch = useDispatch();
@@ -33,7 +35,15 @@ const ShopConnector = (props) => {
       />
       <Route
         path="/shop/cart"
+        render={(routeProps) => <CartDetails {...routeProps} />}
+      />
+      <Route
+        path="/shop/checkout"
         render={(routeProps) => <Checkout {...routeProps} />}
+      />
+      <Route
+        path="/shop/thanks"
+        render={(routeProps) => <Thanks {...routeProps} />}
       />
       <Redirect to="/shop/products/all/1" />
     </Switch>
