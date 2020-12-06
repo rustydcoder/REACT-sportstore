@@ -19,3 +19,5 @@ const CategoryNavigation = (props) => {
     </Fragment>
   );
 };
+
+export default CategoryNavigation;
