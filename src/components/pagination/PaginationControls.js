@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PaginationButtons from "./PaginationButtons";
-import { setPageSize, setSortProperty } from "../../data/actions/loadCreator";
 import { useParams } from "react-router-dom";
+import { setPageSize, setSortProperty } from "../../data/actions/loadCreator";
+
+import PaginationButtons from "./PaginationButtons";
 
 const PaginationControls = (props) => {
   const pageSizes = [5, 10, 25, 100];

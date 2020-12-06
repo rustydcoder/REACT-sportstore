@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constant/Types";
 import * as api from "../constant/api";
 
-export const loadData = (dataType, params = {}) => async (dispatch) => {
+const loadData = (dataType, params = {}) => async (dispatch) => {
   const action = {
     type: ActionTypes.DATA_LOAD,
     payload: { dataType, total: 0, params, data: [] },
@@ -22,12 +22,14 @@ export const loadData = (dataType, params = {}) => async (dispatch) => {
   }
 };
 
-export const setPageSize = (newSize) => ({
+const setPageSize = (newSize) => ({
   type: ActionTypes.DATA_SET_PAGESIZE,
   payload: newSize,
 });
 
-export const setSortProperty = (newProp) => ({
+const setSortProperty = (newProp) => ({
   type: ActionTypes.DATA_SET_SORT_PROPERTY,
   payload: newProp,
 });
+
+export { loadData, setPageSize, setSortProperty };

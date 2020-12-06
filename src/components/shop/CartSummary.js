@@ -27,4 +27,5 @@ const CartSummary = (props) => {
     </div>
   );
 };
+
 export default CartSummary;

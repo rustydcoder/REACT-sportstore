@@ -1,7 +1,7 @@
 import { ActionTypes, DataTypes } from "../constant/Types";
 import * as api from "../constant/api";
 
-export const placeOrder = (order) => async (dispatch) => {
+const placeOrder = (order) => async (dispatch) => {
   const action = {
     type: ActionTypes.DATA_STORE,
     payload: {
@@ -21,3 +21,5 @@ export const placeOrder = (order) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export { placeOrder };

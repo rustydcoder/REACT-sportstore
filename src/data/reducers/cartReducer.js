@@ -1,8 +1,5 @@
 import { ActionTypes } from "../constant/Types";
 
-// possible bug
-// mutating newState data
-
 const cartReducer = (state = {}, action) => {
   const newState = {
     cart: [],
