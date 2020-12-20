@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../data/actions/cartCreator";
 import { placeOrder } from "../../data/actions/ordersCreator";
-import ValidatedForm from "./Form/ValidatedForm";
+import ValidatedForm from "../form/ValidatedForm";
 
 const Checkout = (props) => {
   const defaultAttrs = { type: "text", required: true };

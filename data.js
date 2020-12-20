@@ -33,19 +33,19 @@ for (let i = 1; i < 103; i++) {
   };
 
   let productCount = faker.random.number({ min: 1, max: 5 });
-  let products_ids = [];
+  let product_id = [];
 
-  while (products_ids.length < productCount) {
+  while (product_id.length < productCount) {
     let candidateId = faker.random.number({ min: 1, max: products.length });
-    if (products_ids.indexOf(candidateId) === -1) {
-      products_ids.push(candidateId);
+    if (product_id.indexOf(candidateId) === -1) {
+      product_id.push(candidateId);
     }
   }
 
   for (let j = 0; j < productCount; j++) {
     order.products.push({
       quantity: faker.random.number({ min: 1, max: 10 }),
-      products_ids: products_ids[j],
+      product_id: product_id[j],
     });
   }
 

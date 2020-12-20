@@ -1,20 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setPageSize, setSortProperty } from "../../data/actions/loadCreator";
 
 import PaginationButtons from "./PaginationButtons";
 
 const PaginationControls = (props) => {
-  const pageSizes = [5, 10, 25, 100];
-  const sortKeys = ["Name", "Price"];
-  const dispatch = useDispatch();
+  const pageSizes = props.sizes || [5, 10, 25, 100];
+  const sortKeys = props.keys || ["Name", "Price"];
   const shopStore = useSelector((state) => state.shopReducer);
   const { page, category } = useParams();
 
-  const handlePageSizeChange = (e) => dispatch(setPageSize(e.target.value));
-  const handleSortPropertyChange = (e) =>
-    dispatch(setSortProperty(e.target.value));
+  const handlePageSizeChange = (e) => props.setPageSize(e.target.value);
+
+  const handleSortPropertyChange = (e) => props.setSortProperty(e.target.value);
 
   const currentPage = Number(page);
 
@@ -29,16 +27,16 @@ const PaginationControls = (props) => {
     <div className="m-2">
       <div className="text-center m-1">
         <PaginationButtons
-          currentPage={currentPage}
-          pageCount={pageCount}
-          navigate={navigate}
+          currentPage={props.currentPage || currentPage}
+          pageCount={props.pageCount || pageCount}
+          navigate={props.navigate || navigate}
         />
       </div>
       <div className="form-inline justify-content-center">
         <select
           className="form-control"
           onChange={handlePageSizeChange}
-          value={shopStore.pageSize || pageSizes[0]}
+          value={shopStore.pageSize || props.pageSize || pageSizes[0]}
         >
           {pageSizes.map((s) => (
             <option value={s} key={s}>
@@ -48,8 +46,10 @@ const PaginationControls = (props) => {
         </select>
         <select
           className="form-control"
-          onChange={handleSortPropertyChange}
-          value={shopStore.sortKey || sortKeys[0]}
+          onChange={(e) =>
+            props.setSortProperty(e.target.value) || handleSortPropertyChange(e)
+          }
+          value={shopStore.sortKey || props.sortKey || sortKeys[0]}
         >
           {sortKeys.map((k) => (
             <option value={k.toLowerCase()} key={k}>

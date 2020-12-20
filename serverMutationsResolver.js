@@ -8,7 +8,7 @@ const deleteProduct = ({ id }, { db }) =>
   db.get("products").removeById(id).value();
 
 const shipOrder = ({ id, shipped }, { db }) =>
-  db.get("product").updateById(id, { shipped: shipped }).value();
+  db.get("orders").updateById(id, { shipped: shipped }).value();
 
 module.exports = {
   storeProduct,
