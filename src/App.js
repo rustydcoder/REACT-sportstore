@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,15 +6,23 @@ import {
   Redirect,
 } from "react-router-dom";
 import ShopConnector from "./components/ShopConnector";
-import Admin from "./components/admin";
 import AuthProviderImpl from "./components/auth/AuthProviderImpl";
+
+const Admin = lazy(() => import("./components/admin"));
 
 const App = (props) => (
   <AuthProviderImpl>
     <Router>
       <Switch>
         <Route path="/shop" component={ShopConnector} />
-        <Route path="/admin" component={Admin} />
+        <Route
+          path="/admin"
+          render={(routeProps) => (
+            <Suspense fallback={<h3>Loading...</h3>}>
+              <Admin {...routeProps} />
+            </Suspense>
+          )}
+        />
         <Redirect to="/shop" />
       </Switch>
     </Router>
