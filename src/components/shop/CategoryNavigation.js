@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { ToggleLink } from "../ToggleLink";
+import { Link } from "react-router-dom";
 
 const CategoryNavigation = (props) => {
   const { baseUrl, categories } = props;
@@ -16,6 +17,12 @@ const CategoryNavigation = (props) => {
             {cat}
           </ToggleLink>
         ))}
+      <Link
+        className="btn btn-block btn-secondary fixed-bottom m-2 col-3"
+        to="/admin"
+      >
+        Administration
+      </Link>
     </Fragment>
   );
 };

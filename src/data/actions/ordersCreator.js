@@ -12,7 +12,6 @@ const placeOrder = (order) => async (dispatch) => {
 
   try {
     const { data } = await api.StoreData(DataTypes.ORDERS, order);
-    console.log(data);
     dispatch({
       ...action,
       payload: { ...action.payload, data },

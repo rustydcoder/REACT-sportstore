@@ -50,7 +50,7 @@ const ProductCreator = (props) => {
                     },
                   });
                   if (props.mode !== "edit") {
-                    client.resetStore;
+                    client.resetStore();
                   }
                   navigate();
                 }}

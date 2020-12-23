@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Thanks = (props) => {
   const order = useSelector((state) => state.orders.order);
-  console.log(order);
   return (
     <div>
       <div className="col bg-dark text-white">

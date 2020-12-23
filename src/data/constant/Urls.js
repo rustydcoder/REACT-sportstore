@@ -14,4 +14,6 @@ const RestUrls = {
 
 const GraphQLUrl = `${baseUrl}/graphql`;
 
-export { RestUrls, GraphQLUrl };
+const authUrl = `${baseUrl}/login`;
+
+export { RestUrls, GraphQLUrl, authUrl };
