@@ -1,19 +1,12 @@
 import { DataTypes } from "./Types";
 
-const protocol = "http",
-  hostname = "localhost",
-  port = 3500;
-
-const baseUrl = `${protocol}://${hostname}:${port}`;
-
 const RestUrls = {
-  [DataTypes.PRODUCTS]: `${baseUrl}/api/products`,
-  [DataTypes.CATEGORIES]: `${baseUrl}/api/categories`,
-  [DataTypes.ORDERS]: `${baseUrl}/api/orders`,
+  [DataTypes.PRODUCTS]: `/api/products`,
+  [DataTypes.CATEGORIES]: `/api/categories`,
+  [DataTypes.ORDERS]: `/api/orders`,
 };
 
-const GraphQLUrl = `${baseUrl}/graphql`;
-
-const authUrl = `${baseUrl}/login`;
+const GraphQLUrl = `/graphql`;
+const authUrl = `/login`;
 
 export { RestUrls, GraphQLUrl, authUrl };

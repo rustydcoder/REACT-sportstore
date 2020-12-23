@@ -20,6 +20,7 @@ const OrdersTable = (props) => {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Email</th>
             <th className="text-right">Total</th>
             <th className="text-center">Shipped</th>
           </tr>
